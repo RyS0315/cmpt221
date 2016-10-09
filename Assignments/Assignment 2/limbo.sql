@@ -26,7 +26,7 @@ values ("admin", "gaze11e");
 
 
 # This creates the stuff table
-drob table stuff;
+drop table stuff;
 Create table if not exists stuff(
   id INT AUTO_INCREMENT primary key,
   location_id INT NOT NULL,
