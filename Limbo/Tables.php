@@ -4,7 +4,16 @@ Limbo Project-->
 <?php
 $debug = true;
 
+function deleteEntity($id){
+   $query = 'DROP * FROM stuff WHERE id='.$id.'';
+  show_query($query);
 
+  $results = mysqli_query($dbc,$query) ;
+  check_results($results) ;
+
+  return $results ;
+  echo 'deleted';
+}
 
 # Shows the records in prints
 function stuff($dbc) {
@@ -161,6 +170,7 @@ function stuffdescriptionAdmin($dbc)
   		}
 
   		# End the table
+		#Create a Button to delete the item from the database
   		echo '</TABLE>';
 		echo '<button name="delete" onclick = "deleteEntity(id)">Delete</button>';
                 //echo '<button name='statusUpdate'>Status</button>;
@@ -263,15 +273,6 @@ function stuffAdmin($dbc) {
   		mysqli_free_result( $results ) ;
 	}
 }
-function deleteEntity($id){
-   $query = 'DELETE FROM stuff WHERE id='.$id.'';
-  show_query($query);
 
-  $results = mysqli_query($dbc,$query) ;
-  check_results($results) ;
-
-  return $results ;
-  echo 'deleted';
-}
 
 ?>
