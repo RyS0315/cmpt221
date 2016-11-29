@@ -28,99 +28,39 @@
 <a href="limbolost.php">Lost Something</a>
 <h1>Welcome!</h1>
 
+<!DOCTYPE html>
+<html>
+<?php
+# Connect to MySQL server and the database
+require( 'connect_db.php' ) ;
+
+# Connect to MySQL server and the database
+require( 'limbo_admin_tools.php' ) ;
+
+if ($_SERVER[ 'REQUEST_METHOD' ] == 'POST') {
+
+	$Uname = $_POST['user_id'] ;
+	$pass = $_POST['pass'];
+
+    $pid = validate($Uname, $pass) ;
+
+    if($pid == -1)
+      echo '<P style=color:red>Login failed please try again.</P>' ;
+
+    else
+      load('limboadminwelcome.php', $pid);
+}
+?>
 <!-- Get inputs from the user. -->
-<form action="limboAdminWelcome.php" method="POST">
-<table border=1>
-<td>Username</td>
-<td><input type="text" name="username" value="<?php if (isset($_POST['username'])) echo $_POST['username']; ?>"></td>
+<h1>Limbo Login</h1>
+<form action="limbo_admin.php" method="POST">
+<table>
+<tr>
+<td>UserName:</td><td><input type="text" name="user_id"></td>
 </tr>
 <tr>
-<td>Password</td>
-<td><input type="password" name="password" value="<?php if (isset($_POST['password'])) echo $_POST['password']; ?>"></td>
-</tr>
+<td>Password:</td><td><input type="text" name="pass"></td>
 </table>
 <p><input type="submit" ></p>
 </form>
-
-<?php
-//Connect to MySql and the database
-require( 'connect_db.php' ) ;
-
-//Includes these tables
-require( 'Tables.php' ) ;
-
-if ($_SERVER[ 'REQUEST_METHOD' ] == 'POST') {
-    //$location_id = $_POST['location_id'] ;
-   // $create_date = $_POST['create_date'] ;
-    $room = $_POST['room'];
-    $finder = $_POST['finder'] ;
-    $status = 'lost' ;
-    $description = $_POST['description'] ;
-
-    #Checks to see if there are values in the form
-    /*if(!valid_number($location_id)){
- 	echo '<p style="color:red;font-size:16px;">Please give a location number.</p>';
-    }    
-    else{
-	$location_id = trim($_POST['location_id']);
-    }
-    
-    if (!valid_name($status)){
-	echo '<p style="color:red;font-size:16px;">Enter Status</p>';
-    }
-    else{
-	$status = trim($_POST['status']);
-    }
-	*/
-    if (!valid_name($description)){
-	echo '<p style="color:red;font-size:16px;">Please enter description.</p>';
-    }
-    else{
-	$description = trim($_POST['description']);
-    }
-	
-	
-    if (!valid_name($room)){
-	echo '<p style="color:red;font-size:16px;">Please enter room.</p>';
-    }
-    else{
-	$room = trim($_POST['room']);
-    }
-	
-
-    if (!valid_name($finder)){
-	echo '<p style="color:red;font-size:16px;">Please enter finder.</p>';
-    }
-    else{
-	$finder = trim($_POST['finder']);
-    }
-    /*if ( $status == 'lost'){
-	$status = trim($_POST['status']);
-    }
-    else{
-	echo '<p style="color:red;font-size:16px;">Please enter found, lost, or claimed for status.</p>';
-    }*/
-
-
-
-    #If all are filled it will add
-    if( !empty($status) && !empty($description) && !empty($finder)){
- 	$status='found';
-        $created_date='now()';
-        insert_record_found($dbc,$description,$finder,$status,$room);
-    }
-}
-else if($_SERVER[ 'REQUEST_METHOD' ] == 'GET') 
-{
- if(isset($_GET['id']))
-stuffdescription($dbc, $_GET['id']) ;
-}
-
-
-//Close the connection
-mysqli_close( $dbc ) ;
-?>
-
-
-
 </html>
