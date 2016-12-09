@@ -22,10 +22,22 @@
 <!--Edited By Riley Stadel, Rob Lynch, Mark Miller-->
 <!DOCTYPE html>
 <html>
+<link rel="stylesheet" type= "text/css" href="Limbo.css">
 
-<a href="LimboHome.php">Home</a>      
-<a href="limbofound.php">Found Something</a>      
-<a href="limbolost.php">Lost Something</a>
+<p>
+<a href="LimboHome.php">
+	<img src="picture/home.png" style="width:250px;height:90px;">
+</a>      
+<a href="limboLost.php">
+<img src="picture/Lost.png" style="width:250px;height:90px;">
+</a>      
+<a href="limboFound.php">
+<img src="picture/found.png" style="width:250px;height:90px;">
+</a>
+<img src="picture/maristlogo.png" style = "width:350px; height:90px;">
+<img src="picture/maristseal.png" style = "width:90px;  height:90px;">
+</p>
+
 <h1>Welcome!</h1>
 
 <!DOCTYPE html>

@@ -23,22 +23,35 @@
 <!DOCTYPE html>
 <html>
 
-<a href="LimboHome.php">Home</a>      
-<a href="limboFound.php">Found Something</a>      
-<a href="limbo_admin.php">Admin</a>
+<link rel="stylesheet" type= "text/css" href="Limbo.css">
+
+<p>
+<a href="Limbohome.php">
+	<img src="picture/Home.png" style="width:250px;height:90px;">
+</a>      
+<a href="limboFound.php">
+<img src="picture/Found.png" style="width:250px;height:90px;">
+</a>      
+<a href="limbo_admin.php">
+<img src="picture/Admin_login.png" style="width:250px;height:90px;">
+</a>
+<img src="picture/maristlogo.png" style = "width:350px; height:90px;">
+<img src="picture/maristseal.png" style = "width:90px;  height:90px;">
+</p>
+
 <h1>Report a Lost Item!</h1>
 
 <!-- Get inputs from the user. -->
 <form action="LimboLost.php" method="POST">
-<table border=1>
-<td>Stuff</td><td>Room</td><td>Owner</td>
+<table border=1 align=center>
+<td>Stuff</td><td>Room</td><td>User</td>
 <tr>
 <td><input type="text" name="description" value="<?php if (isset($_POST['description'])) echo $_POST['description']; ?>"></td>
 <td><input type="text" name="room" value="<?php if (isset($_POST['room'])) echo $_POST['room']; ?>"></td>
 <td><input type="text" name="owner" value="<?php if (isset($_POST['owner'])) echo $_POST['owner']; ?>"></td>
 </tr>
 </table>
-<p><input type="submit" ></p>
+<input type="submit" align=center>
 </form>
 
 <?php
@@ -103,10 +116,10 @@ if ($_SERVER[ 'REQUEST_METHOD' ] == 'POST') {
 
 
     #If all are filled it will add
-    if( !empty($status) && !empty($description) && !empty($owner)){
- 	$status='lost';
+    if(!empty($description) && !empty($owner)){
+		$status='lost';
         $created_date='now()';
-        insert_record_lost($dbc,$description,$owner,$status,$room);
+        insert_record_lost($dbc,$description,$owner,$status,$room,$created_date);
     }
 }
 else if($_SERVER[ 'REQUEST_METHOD' ] == 'GET') 

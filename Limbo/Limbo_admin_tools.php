@@ -39,7 +39,7 @@ function validate($Uname = '', $pass = '')
       exit();
     }
  # Make the query
-    $query = "SELECT email, pass FROM users WHERE email ='" . $Uname . "' AND pass = '" . $pass . "';
+    $query = "SELECT email, pass FROM users WHERE email ='" . $Uname . "' AND pass = '" . $pass . "'";
     show_query($query) ;
 
     # Execute the query

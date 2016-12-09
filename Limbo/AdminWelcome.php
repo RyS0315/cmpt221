@@ -6,14 +6,6 @@
 <meta http-equiv="Content-Style-Type" content="text/css" /> 
     
 <title>Limbo Found</title>
-   
- <!--<link href="/library/skin/tool_base.css" type="text/css" rel="stylesheet" media="all" />
-    
-<link href="/library/skin/morpheus-default/tool.css" type="text/css" rel="stylesheet" media="all" />
-   
- <script type="text/javascript" language="JavaScript" src="/library/js/headscripts.js"></script>
-
- -->
   <style>body { padding: 5px !important; }</style>
   </head>
   <body>
@@ -22,14 +14,24 @@
 <!--Edited By Riley Stadel, Rob Lynch, Mark Miller-->
 <!DOCTYPE html>
 <html>
+<link rel="stylesheet" type= "text/css" href="Limbo.css">
 
-<a href="LimboHome.php">Home</a>      
-<a href="limboLost.php">Lost Something</a>      
-<a href="limbo_admin.php">Admin</a>
-<h1>Report a Found Item!</h1>
+<p>
+<a href="LimboAdminWelcome.php">
+	<img src="picture/admin_login.png" style="width:250px;height:90px;">
+</a>      
+<a href="limboLost.php">
+<img src="picture/Lost.png" style="width:250px;height:90px;">
+</a>      
+<a href="limboFound.php">
+<img src="picture/found.png" style="width:250px;height:90px;">
+</a>
+<img src="picture/maristlogo.png" style = "width:350px; height:90px;">
+<img src="picture/maristseal.png" style = "width:90px;  height:90px;">
+</p>
 
 <!-- Get inputs from the user. -->
-<form action="LimboFound.php" method="POST">
+<!--<form action="LimboFound.php" method="POST">
 <table border=1>
 <td>Stuff</td><td>Room</td><td>Owner</td>
 <tr>
@@ -39,9 +41,13 @@
 </tr>
 </table>
 <p><input type="submit" ></p>
-</form>
+</form-->
 
+<h1>Welcome Admin!</h1>
 <?php
+
+
+
 //Connect to MySql and the database
 require( 'connect_db.php' ) ;
 
@@ -49,75 +55,16 @@ require( 'connect_db.php' ) ;
 require( 'Tables.php' ) ;
 
 if ($_SERVER[ 'REQUEST_METHOD' ] == 'POST') {
-    //$location_id = $_POST['location_id'] ;
-   // $create_date = $_POST['create_date'] ;
-    $room = $_POST['room'];
-    $finder = $_POST['finder'] ;
-    $status = 'lost' ;
-    $description = $_POST['description'] ;
-
-    #Checks to see if there are values in the form
-    /*if(!valid_number($location_id)){
- 	echo '<p style="color:red;font-size:16px;">Please give a location number.</p>';
-    }    
-    else{
-	$location_id = trim($_POST['location_id']);
-    }
     
-    if (!valid_name($status)){
-	echo '<p style="color:red;font-size:16px;">Enter Status</p>';
-    }
-    else{
-	$status = trim($_POST['status']);
-    }
-	*/
-    if (!valid_name($description)){
-	echo '<p style="color:red;font-size:16px;">Please enter description.</p>';
-    }
-    else{
-	$description = trim($_POST['description']);
-    }
-	
-	
-    if (!valid_name($room)){
-	echo '<p style="color:red;font-size:16px;">Please enter room.</p>';
-    }
-    else{
-	$room = trim($_POST['room']);
-    }
-	
-
-    if (!valid_name($finder)){
-	echo '<p style="color:red;font-size:16px;">Please enter finder.</p>';
-    }
-    else{
-	$finder = trim($_POST['finder']);
-    }
-    /*if ( $status == 'lost'){
-	$status = trim($_POST['status']);
-    }
-    else{
-	echo '<p style="color:red;font-size:16px;">Please enter found, lost, or claimed for status.</p>';
-    }*/
-
-
-
-    #If all are filled it will add
-    if( !empty($status) && !empty($description) && !empty($finder)){
- 	$status='found';
-        $created_date='now()';
-        insert_record_found($dbc,$description,$finder,$status,$room);
-    }
+    
 }
 else if($_SERVER[ 'REQUEST_METHOD' ] == 'GET') 
 {
  if(isset($_GET['id']))
-stuffdescription($dbc, $_GET['id']) ;
+stuffdescriptionAdmin($dbc, $_GET['id']) ;
 }
-
-
 //Show stuff Table
-stuff($dbc);
+stuffAdmin($dbc);
 
 //Close the connection
 mysqli_close( $dbc ) ;

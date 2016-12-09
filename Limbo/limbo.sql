@@ -21,7 +21,8 @@ create table if not exists users(
 
 # inserts data into the users table 
 insert into users()
-values ("","testfirst","testuser","testemail", "gaze11e","now()");
+values ("","testfirst","testuser","testemail", "gaze11e",now()),
+       ("","Database","Admin-User","admin", "pass",now());
 select * from users;
 
 
@@ -41,7 +42,7 @@ Create table if not exists stuff(
 );
 
 Insert into stuff()
-values("","1","TestItem", "now()", "now()", "TestRoom", "testOwner", "testFinder", "lost");
+values("","1","TestItem", now(), now(), "TestRoom", "testOwner", "testFinder", "lost");
 select * from stuff;
 
 #This creates the locations table
@@ -88,3 +89,4 @@ values ("now()", "now()", "Byrne House"),
 ("now()", "now()", "Student Center"),
 ("now()", "now()", "West Cedar Townhouses");
 
+select * from users;

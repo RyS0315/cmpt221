@@ -6,14 +6,6 @@
 <meta http-equiv="Content-Style-Type" content="text/css" /> 
     
 <title>Limbo</title>
-   
- <!--<link href="/library/skin/tool_base.css" type="text/css" rel="stylesheet" media="all" />
-    
-<link href="/library/skin/morpheus-default/tool.css" type="text/css" rel="stylesheet" media="all" />
-   
- <script type="text/javascript" language="JavaScript" src="/library/js/headscripts.js"></script>
-
- -->
   <style>body { padding: 5px !important; }</style>
   </head>
   <body>
@@ -22,10 +14,28 @@
 <!--Edited By Riley Stadel, Rob Lynch, Mark Miller-->
 <!DOCTYPE html>
 <html>
-<a href="LimboLost.php">Lost Something</a>      
-<a href="limboFound.php">Found Something</a>      
-<a href="limbo_admin.php">Admin</a>
+
+
+<link rel="stylesheet" type= "text/css" href="Limbo.css">
+
+<p>
+<a href="LimboLost.php">
+	<img src="picture/Lost.png" style="width:250px;height:90px;">
+</a>      
+<a href="limboFound.php">
+<img src="picture/Found.png" style="width:250px;height:90px;">
+</a>      
+<a href="limbo_admin.php">
+<img src="picture/Admin_login.png" style="width:250px;height:90px;">
+</a>
+<img src="picture/maristlogo.png" style = "width:350px; height:90px;">
+<img src="picture/maristseal.png" style = "width:90px;  height:90px;">
+</p>
+
 <h1>Welcome to Limbo!</h1>
+
+
+
 If you lost or found something, you're in luck: this is the place to report it.
 <?php
 //Connect to MySql and the database
@@ -64,6 +74,7 @@ if ($_SERVER[ 'REQUEST_METHOD' ] == 'POST') {
     #If all are filled it will add
     if(!empty($date) && !empty($status) && !empty($description))
  	insert_record($dbc,$date,$status,$description) ;
+    header('Location: limbohome.php');
 }
 else if($_SERVER[ 'REQUEST_METHOD' ] == 'GET') 
 {
